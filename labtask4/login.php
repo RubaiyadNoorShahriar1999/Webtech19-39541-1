@@ -1,4 +1,4 @@
-<?php require_once("./inc/deps.php"); ?>
+
 <?php header_section("Login"); ?>
 <?php
 if (isset($_SESSION['login']) && $_SESSION['login']) {

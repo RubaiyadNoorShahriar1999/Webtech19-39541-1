@@ -1,5 +1,4 @@
 <?php
-// var_dump($_SESSION);
 function header_section($title)
 {
     if (preg_match("/Dashboard/", $title))
