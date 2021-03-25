@@ -1,5 +1,4 @@
-<?php if(!empty($_GET['id']))
-	{ ?>
+<?php if(!empty($_GET['id'])){ ?>
 <?php 
 
 require_once '../model/model.php';

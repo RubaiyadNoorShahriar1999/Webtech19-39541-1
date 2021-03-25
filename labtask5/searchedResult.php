@@ -1,25 +1,19 @@
-<?php  
-require_once 'controller/displayControler.php';
-$tableName = 'product';
-$products = fetchAllProducts($tableName);
 
-?>
 <!DOCTYPE html>
 <html>
 <head>
+	<title></title>
 	<style>
-	table, th, td {
-  	border: 1px solid black;
-	}
-	th, td {
+		table,td,th{
+			border:1px solid black;
+		}
+		th, td {
   	padding: 15px;
 	}
-</style>
-	<title></title>
+	</style>
 </head>
 <body>
-<fieldset>
-<legend><B>DISPLAY</B></legend> <br>
+	<h2 style="background-color: rgb(149, 165, 166);color:black;border: 2px solid black; border-radius: 20px;font-size: 200%; text-align: center;">Search Results </h2>
 <table>
 	<thead>
 		<tr>
@@ -30,7 +24,7 @@ $products = fetchAllProducts($tableName);
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($products as $i => $product): ?>
+		<?php foreach ($allSearchedProducts as $i => $product): ?>
 			<?php if($product['display']=='Yes'){ ?>
 			<tr>
 				<td><?php echo $product['id'] ?></td>
@@ -46,7 +40,7 @@ $products = fetchAllProducts($tableName);
 	
 
 </table>
-</fieldset>
+
 
 </body>
 </html>
