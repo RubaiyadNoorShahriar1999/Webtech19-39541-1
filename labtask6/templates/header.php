@@ -2,7 +2,7 @@
 // var_dump($_SESSION);
 function header_section($title)
 {
-    if (preg_match("/Dashboard/", $title))
+    if (isset($_SESSION['login']))
         if (!$_SESSION['login'])
             header("Location: login.php");
 ?>
@@ -21,7 +21,7 @@ function header_section($title)
     <body>
         <header>
             <div class="header-info clearfix">
-                <?php if (preg_match("/Dashboard/", $title) && isset($_SESSION['login'])) : ?>
+                <?php if (isset($_SESSION['login'])) : ?>
 
                     <h1 style="float:left;"><?php echo ($title) ? $title : "Document"; ?></h1>
                     <h3 style="float:right;">Logged in as <?php echo ucfirst($_SESSION['type']); ?></h3>
@@ -32,7 +32,7 @@ function header_section($title)
             </div>
             <nav class="menu">
                 <ul>
-                    <?php if (preg_match("/Dashboard/", $title) && isset($_SESSION['login'])) : ?>
+                    <?php if (isset($_SESSION['type']) && $_SESSION['type'] === "admin" && isset($_SESSION['login']) && $_SESSION['login']) : ?>
 
                         <li><a href="dashboard.php">Home</a></li>
                         <li><a href="viewprofile.php">View Profile</a></li>
@@ -41,17 +41,27 @@ function header_section($title)
                         <li><a href="changepassword.php">Change Password</a></li>
                         <li><a href="addmanagement.php">Add management</a></li>
                         <li><a href="inc/logout.php">Logout</a></li>
-                    <?php elseif (preg_match("/Add Management/", $title) && isset($_SESSION['login'])) : ?>
+                    <?php elseif (isset($_SESSION['type']) && $_SESSION['type'] === "restaurantadmin" && isset($_SESSION['login']) && $_SESSION['login']) : ?>
 
+                        <li><a href="dashboard.php">Home</a></li>
+                        <li><a href="viewprofile.php">View Profile</a></li>
+                        <li><a href="editprofile.php">Edit Profile</a></li>
+                        <li><a href="changepp.php">Change Profiel Picture</a></li>
+                        <li><a href="changepassword.php">Change Password</a></li>
                         <li><a href="dashboard.php">Dashboard</a></li>
                         <li><a href="viewmanagementprofile.php">View Management</a></li>
                         <li><a href="addmanagement.php">Add Management</a></li>
+                        <li><a href="inc/logout.php">Logout</a></li>
                     <?php else : ?>
 
                         <li><a href="index.php">Home</a></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="registration.php">Registration</a></li>
+                        <li><a href="registration_u.php">Registration</a></li>
+                        <li><a href="registration_m.php">Management Registration</a></li>
+                        <li><a href="registration_ra.php">Restaurent Admin Registration</a></li>
                     <?php endif; ?>
+
                 </ul>
             </nav>
-        </header><?php } ?>
+        </header>
+    <?php } ?>

@@ -36,6 +36,23 @@ if (isset($_GET['errors'])) {
                     <td><input class="inp" id="password" type="password" name="password" required></td>
                 </tr>
                 <tr>
+                    <td><label>Type</label></td>
+                    <td>
+
+                        <input id="restaurant" type="radio" name="type" value="restaurantadmin" required>
+                        <label for="restaurant">Restaurant Admin</label>
+
+                        <input id="management" type="radio" name="type" value="management" required>
+                        <label for="management">Management</label>
+
+                        <input id="user" type="radio" name="type" value="user" required>
+                        <label for="user">User</label>
+
+                        <input id="admin" type="radio" name="type" value="admin" required>
+                        <label for="admin">Admin</label>
+                    </td>
+                </tr>
+                <tr>
                     <td><input id="remember" type="checkbox" name="remember"></td>
                     <td><label for="remember">Remember me</label></td>
                 </tr>

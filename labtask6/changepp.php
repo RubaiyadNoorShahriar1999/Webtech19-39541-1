@@ -2,6 +2,11 @@
 <?php header_section("Dashboard | Edit Profile Picture"); ?>
 <?php
 
+if ($_SESSION['login'] == false) {
+    header("Location: login.php");
+    exit();
+}
+
 $errors_message = [];
 $success_message = "";
 

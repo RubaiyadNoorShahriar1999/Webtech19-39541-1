@@ -1,3 +1,5 @@
+/********** Basic Format **********/
+
 *,
 *::after,
 *::before {
@@ -25,11 +27,16 @@ ul {
   padding: 0;
 }
 
+/********** Form Input **********/
+
 input.inp {
   padding: 10px;
   width: 300px;
   border: 1px solid black;
 }
+
+
+/********** Menu **********/
 
 .menu ul li {
   display: inline-block;
@@ -45,6 +52,8 @@ input.inp {
   color: #e84393;
 }
 
+/********** Header and Footer Section **********/
+
 header,
 footer {
   width: 70%;
@@ -54,6 +63,8 @@ footer {
   text-align: center;
   color: white;
 }
+
+/********** Main Section **********/
 
 main {
   width: 70%;
@@ -87,6 +98,8 @@ table tr td:last-child {
   text-align: left;
 }
 
+/********** Basic Button **********/
+
 .btn {
   padding: 10px 20px;
   background-color: green;
@@ -95,6 +108,8 @@ table tr td:last-child {
   color: white;
   font-size: medium;
 }
+
+/********** Upload profile pictures **********/
 
 .profile-info,
 .file-upload {
@@ -107,6 +122,10 @@ table tr td:last-child {
   width: 50%;
   float: left;
 }
+
+
+/********** Error and Success Message **********/
+
 
 .errors-list {
   width: 90%;
@@ -123,6 +142,8 @@ table tr td:last-child {
   color: white;
   font-weight: bold;
 }
+
+/********** View Management Profile **********/
 
 .view-mngmnt {
   width: 95%;

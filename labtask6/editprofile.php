@@ -1,6 +1,10 @@
 <?php require_once("./inc/deps.php"); ?>
 <?php header_section("Dashboard | Edit Profile"); ?>
 <?php
+if ($_SESSION['login'] == false) {
+    header("Location: login.php");
+    exit();
+}
 
 $errors_message = [];
 $success_message = "";
@@ -26,15 +30,18 @@ if (isset($_GET['errors'])) {
         if ($error == "duplicate") {
             array_push($errors_message, "Duplicate Email address");
         }
-        if ($error == "gender") {
-            array_push($errors_message, "Invalid Gender");
-        }
+        // if ($error == "gender") {
+        //     array_push($errors_message, "Invalid Gender");
+        // }
         if ($error == "type") {
             array_push($errors_message, "Invalid Type");
         }
-        if ($error == "dob") {
-            array_push($errors_message, "Invalid Date Of Birth");
+        if ($error == "notupdate") {
+            array_push($errors_message, "Something went wrong, Update unsuccessfull");
         }
+        // if ($error == "dob") {
+        //     array_push($errors_message, "Invalid Date Of Birth");
+        // }
     }
 }
 ?>
@@ -73,46 +80,58 @@ if (isset($_GET['errors'])) {
 
     <?php endif; ?>
     <form action="inc/editprofile.inc.php" method="post">
+        <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
+            <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
+        <?php endif; ?>
         <table>
             <tbody>
-                <tr>
-                    <td><label for="name">Name</label></td>
-                    <td><input class="inp" id="name" type="text" value="<?php echo $_SESSION['name'] ?>" name="name" required></td>
-                </tr>
-                <tr>
-                    <td><label for="email">Email</label></td>
-                    <td><input class="inp" id="email" type="email" value="<?php echo $_SESSION['email'] ?>" name="email" required></td>
-                </tr>
-                <tr>
-                    <td><label>Gender</label></td>
-                    <td>
-                        <input id="male" type="radio" value="male" <?php echo isset($_SESSION['gender']) && $_SESSION['gender'] == "male" ? "checked " : ""; ?>name="gender">
-                        <label for="male">Male</label>
 
-                        <input id="female" type="radio" value="female" <?php echo isset($_SESSION['gender']) && $_SESSION['gender'] == "female" ? "checked " : ""; ?>name="gender">
-                        <label for="female">Female</label>
+                <?php if (isset($_SESSION['name']) && !empty($_SESSION['name'])) : ?>
 
-                        <input id="others" type="radio" value="others" <?php echo isset($_SESSION['gender']) && $_SESSION['gender'] == "others" ? "checked " : ""; ?>name="gender">
-                        <label for="others">Others</label>
-                    </td>
-                </tr>
-                <td><label>Type</label></td>
-                    <td>
-                        <input id="restaurant admin" type="radio" value="male" <?php echo isset($_SESSION['type']) && $_SESSION['type'] == "restaurantadmin" ? "checked " : ""; ?>name="type">
-                        <label for="restaurant admin">Restaurant Admin</label>
+                    <tr>
+                        <td><label for="name">Name</label></td>
+                        <td><input class="inp" id="name" type="text" value="<?php echo $_SESSION['name'] ?>" name="name" required></td>
+                    </tr>
 
-                        <input id="management" type="radio" value="management" <?php echo isset($_SESSION['type']) && $_SESSION['type'] == "management" ? "checked " : ""; ?>name="type">
-                        <label for="management">Management</label>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['email']) && !empty($_SESSION['email'])) : ?>
 
-                        <input id="user" type="radio" value="user" <?php echo isset($_SESSION['type']) && $_SESSION['type'] == "type" ? "checked " : ""; ?>name="type">
-                        <label for="user">User</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="dob">Date Of Birth</label></td>
-                    <!-- value="2021-02-03" -->
-                    <td><input class="inp" id="dob" type="date" value="<?php echo $_SESSION['dob'] ?>" name="dob" required></td>
-                </tr>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input class="inp" id="email" type="email" value="<?php echo $_SESSION['email'] ?>" name="email" required></td>
+                    </tr>
+
+                <?php endif; ?>
+                <?php if (isset($_SESSION['phone']) && !empty($_SESSION['phone'])) : ?>
+
+                    <tr>
+                        <td><label for="phone">Phone</label></td>
+                        <td><input class="inp" id="phone" type="phone" value="<?php echo $_SESSION['phone'] ?>" name="phone" required></td>
+                    </tr>
+
+                <?php endif; ?>
+                <?php if (isset($_SESSION['nid']) && !empty($_SESSION['nid'])) : ?>
+
+                    <tr>
+                        <td><label for="nid">NID</label></td>
+                        <td><input class="inp" id="nid" type="nid" value="<?php echo $_SESSION['nid'] ?>" name="nid" required></td>
+                    </tr>
+
+                <?php endif; ?>
+                <?php if (isset($_SESSION['location']) && !empty($_SESSION['location'])) : ?>
+
+                    <tr>
+                        <td><label for="location">Location</label></td>
+                        <td><input class="inp" id="location" type="location" value="<?php echo $_SESSION['location'] ?>" name="location" required></td>
+                    </tr>
+
+                <?php endif; ?>
+                <?php if (isset($_SESSION['type']) && !empty($_SESSION['type'])) : ?>
+
+                    <input type="hidden" name="type" value="<?php echo $_SESSION['type']; ?>">
+
+                <?php endif; ?>
+
                 <tr>
                     <td><button class="btn" type="reset">Reset</button></td>
                     <td><button class="btn" id="edit" type="submit" name="edit">Edit</button></td>

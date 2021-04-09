@@ -2,6 +2,10 @@
 <?php header_section("Add Management"); ?>
 <?php
 
+if ($_SESSION['login'] == false) {
+    header("Location: login.php");
+    exit();
+}
 $errors_message = [];
 $success_message = "";
 
@@ -45,7 +49,6 @@ if (isset($_GET['errors'])) {
         if ($error == "dob") {
             array_push($errors_message, "Invalid Date Of Birth");
         }
-
     }
 }
 ?>
